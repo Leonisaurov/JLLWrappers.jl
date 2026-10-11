@@ -1,5 +1,16 @@
 # JLLWrappers
 
+> **Fork (Termux/Android, bionic).**  Upstream v1.8.0 plus one patch: when the host platform
+> reports `libc = "bionic"` and `select_platform` finds no matching wrapper, fall back to the
+> wrapper for the same `arch` and `os`, preferring glibc.  Without it, every JLL on a bionic host
+> silently leaves its products undefined (`the module exposes no *_path binding`), because a
+> different libc disqualifies the match and the code only does `@debug`.  The wrapper itself is
+> platform-independent - it declares product paths relative to `artifact_dir` and the `dlopen`
+> flags - and the artifact still comes from the JLL's own `Artifacts.toml` or from
+> `Overrides.toml`.  Measured: `best_wrapper = .../FFTW_jll/CnY1I/src/wrappers/aarch64-linux-gnu.jl`
+> with `libfftw3_path` resolving to the bionic artifact.  The patch and its evidence live in
+> `Leonisaurov/Yggdrasil-termux` (`patches/JLLWrappers-bionic-fallback.patch`).  Version 1.8.1 so
+> that it resolves above General's 1.8.0.
 [![CI](https://github.com/JuliaPackaging/JLLWrappers.jl/actions/workflows/ci.yml/badge.svg)](https://github.com/JuliaPackaging/JLLWrappers.jl/actions/workflows/ci.yml)
 [![deps](https://juliahub.com/docs/JLLWrappers/deps.svg)](https://juliahub.com/ui/Packages/General/JLLWrappers#dependents)
 
