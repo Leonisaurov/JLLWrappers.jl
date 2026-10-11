@@ -9,8 +9,9 @@
 > flags - and the artifact still comes from the JLL's own `Artifacts.toml` or from
 > `Overrides.toml`.  Measured: `best_wrapper = .../FFTW_jll/CnY1I/src/wrappers/aarch64-linux-gnu.jl`
 > with `libfftw3_path` resolving to the bionic artifact.  The patch and its evidence live in
-> `Leonisaurov/Yggdrasil-termux` (`patches/JLLWrappers-bionic-fallback.patch`).  Version 1.8.1 so
-> that it resolves above General's 1.8.0.
+> `Leonisaurov/Yggdrasil-termux` (`patches/JLLWrappers-bionic-fallback.patch`).  Version 1.8.2 so
+> that it resolves above General's 1.8.0 (1.8.1 shipped the same idea but only in the
+> `host_platform !== nothing` branch, which no ordinary JLL takes, and is yanked).
 [![CI](https://github.com/JuliaPackaging/JLLWrappers.jl/actions/workflows/ci.yml/badge.svg)](https://github.com/JuliaPackaging/JLLWrappers.jl/actions/workflows/ci.yml)
 [![deps](https://juliahub.com/docs/JLLWrappers/deps.svg)](https://juliahub.com/ui/Packages/General/JLLWrappers#dependents)
 
